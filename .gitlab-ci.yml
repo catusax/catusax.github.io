@@ -1,13 +1,20 @@
 image: node:8.11.2
 
+before_script:
+  - export TZ='Asia/Shanghai'
+  - git config --global user.name "coolrc136"
+  - git config --global user.email "renchao13619102485@gmail.com"
+  - npm install -g hexo
+  - npm install -g hexo-cli
+  - npm install
+
+
 pages:
   cache:
     paths:
     - node_modules/
 
   script:
-  - npm install hexo-cli -g
-  - npm install
   - hexo deploy
   artifacts:
     paths:
