@@ -16,7 +16,7 @@ if theme.disqus
 if theme.gitment
     #render
     link(rel="stylesheet", href=url_for("https://imsun.github.io/gitment/style/default.css"))
-    script(src='https://imsun.github.io/gitment/dist/gitment.browser.js')
+    script(src='/js/gitment.browser.min.js')
     script.
         var gitment = new Gitment({
         //id: '页面 ID', // 可选。
