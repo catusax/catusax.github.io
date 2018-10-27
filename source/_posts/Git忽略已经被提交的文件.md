@@ -18,5 +18,3 @@ tags:
 > 正确的做法应该是：`git rm --cached logs/xx.log`，然后更新 `.gitignore` 忽略掉目标文件，最后 `git commit -m "We really don't want Git to track this anymore!"`
 
 至于为什么这么做，请看原文：[https://segmentfault.com/q/1010000000430426](https://segmentfault.com/q/1010000000430426)
-
-折腾gitlab时候
