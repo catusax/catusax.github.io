@@ -1,17 +1,17 @@
-mixin home()
-    - var prev = page.prev_link
-    - var next = page.next_link
-    .paginator
-        if page.prev
-            a.prev(href=url_for(prev))!= __('prev') 
-        if page.next
-            a.next(href=url_for(next))!= __('next')
-
-mixin post()
-    - var prev = page.prev ? page.prev.path : false;
-    - var next = page.next ? page.next.path : false; 
-    .paginator
-        if prev
-            a.prev(href=url_for(prev))!= __('prev_post')
-        if next
-            a.next(href=url_for(next))!= __('next_post')
+-
+  var option = {
+    prev_text: 'PREV',
+    next_text: 'NEXT',
+    mid_size: 1
+  }
+nav#pagination
+  if(!is_post())
+    .pagination!= paginator(option)
+  //- 是文章内容页面
+  else
+      if(page.prev)
+          a(class="prev",href=url_for(page.prev.path))
+            span= page.prev.title
+      if(page.next)
+          a(class="prev",href=url_for(page.next.path))
+            span= page.next.title
