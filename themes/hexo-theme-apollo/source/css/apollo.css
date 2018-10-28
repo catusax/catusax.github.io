@@ -523,7 +523,7 @@ pre .coffeescript .javascript,pre .javascript .xml,pre .tex .formula,pre .xml .j
 	margin:4em 0;
 	text-align:center
 }
-#pagination .prev,#paginationr .next, {
+#pagination .prev,#pagination .next{
 	display:inline-block;
 	margin:0 4px;
 	padding:4px 12px;
