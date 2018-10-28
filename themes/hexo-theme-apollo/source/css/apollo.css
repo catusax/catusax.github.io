@@ -537,7 +537,7 @@ pre .coffeescript .javascript,pre .javascript .xml,pre .tex .formula,pre .xml .j
 	background-color:#22bd77
 }
 
-#pagination .pagination a{
+#pagination .pagination a, #pagination .pagination .page-number current{
 	display:inline-block;
 	margin:0 4px;
 	padding:4px 12px;
