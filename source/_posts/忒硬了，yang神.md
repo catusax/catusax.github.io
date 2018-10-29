@@ -10,6 +10,6 @@ tags:
 - dota
 ---
 
-[![泉水买跳刀](https://wx4.sinaimg.cn/mw1024/67f8efcdly1fwn6oxdx22g20dw08pqvf.gif)](https://weibo.com/1744367565/GFUabAS9o?type=repost#_rnd1540718698118)
+[![泉水买跳刀](https://wx4.sinaimg.cn/mw1024/67f8efcdly1fwn6oxdx22g20dw08pqvf.gif)](https://weibo.com/1744367565/GFUabAS9o?type=repost#_rnd1540718698118)<!--more-->
 
 yang神一打五，泉水买跳刀戏耍毛子，也太硬了8.
