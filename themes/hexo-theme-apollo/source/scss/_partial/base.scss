@@ -38,7 +38,7 @@ a.nav-list-link.active {
     border-bottom: 2px solid #42b983;
 }
 
-a.nav-list-link:before,
+a.nav-list-link:not(.active):before,
 a.post-title-link:before {
     content: "";
     position: absolute;
