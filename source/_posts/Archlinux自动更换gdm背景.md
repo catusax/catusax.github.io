@@ -34,9 +34,9 @@ Archlinux上自动更换gdm登录界面背景的脚本
 程序会在下次开机时更换背景，要更换的背景为`~/图片/background.*`
 ## 卸载
 要卸载脚本，请执行
-
-        chmod +x uninstall.sh
-        ./uninstall.sh
-
+```
+chmod +x uninstall.sh
+./uninstall.sh
+```
 如果不想在卸载时恢复背景，请删除uninstall.sh最后一行后执行上面命令
 最后在gnome-session-properties删掉命令即可
