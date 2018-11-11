@@ -85,7 +85,7 @@ func writeLines(path string, lines []string) error{
     if err != nil {
     return err
     }
-
+    defer file.Close()
     writer := bufio.NewWriter(file)
 
     for _,elem := range lines {
