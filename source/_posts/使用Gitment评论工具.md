@@ -27,7 +27,7 @@ tags:
 2.引入Gitment代码到相应页面
 我用的hexo，所以找打博客主题的`layout/comment.jade`文件，加入以下代码：
 
-```html
+```xml
 if theme.gitment
     #render
     link(rel="stylesheet", href=url_for("https://imsun.github.io/gitment/style/default.css"))
@@ -49,7 +49,7 @@ if theme.gitment
 
 如果你是直接写html的话，直接加入这些代码填入正确的参数就行：
 
-```html
+```xml
 const gitment = new Gitment({
   id: 'Your page ID', // optional
   owner: 'Your GitHub ID',
