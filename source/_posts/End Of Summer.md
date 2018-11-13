@@ -10,6 +10,7 @@ tags:
 - monet
 ---
 ![](https://coolrc-blog.oss-cn-shenzhen.aliyuncs.com/18-11-13/30448282.jpg_webp)
+<!--more-->
 # Stacks of Wheat (End of Summer)
 
 > 1890/91
