@@ -11,9 +11,25 @@
 @import "_partial/copyright";
 
 @font-face {
-    font-family: 'sourcesanspro';
-    src: url('/font/sourcesanspro.woff2') format('woff2'),
-         url('/font/sourcesanspro.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "Source Sans Pro";
+  src: local("Source Sans Pro"), url(/font/Source_Sans_Pro/SourceSansPro-Regular.ttf);
+}
+@font-face {
+  font-family: "Source Sans Pro";
+  src: local("Source Sans Pro Light"), url(/font/Source_Sans_Pro/SourceSansPro-Light.ttf);
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Source Sans Pro";
+  src: local("Source Sans Pro Semibold"), url(/font/Source_Sans_Pro/SourceSansPro-Semibold.ttf);
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Roboto Mono";
+  src: local("Roboto Mono"), url(/font/Roboto_Mono/RobotoMono-Regular.ttf);
+}
+@font-face {
+  font-family: "Dosis";
+  src: local("Dosis Medium"), url(/font/Dosis/Dosis-Medium.ttf);
+  font-weight: 500;
 }
