@@ -16,11 +16,13 @@ tags:
 
 ## Under the Wave off Kanagawa
 
->  1942
+>  c. 1830/33
 
-> Artist:
+>  Artist:
 >
-> Edward Hopper
-> American, 1882–1967
+>  Katsushika Hokusai 葛飾 北斎 
+>  Japanese, 1760-1849
 
-Edward Hopper said that *Nighthawks* was inspired by “a restaurant on New York’s Greenwich Avenue where two streets meet,” but the image—with its carefully constructed composition and lack of narrative—has a timeless, universal quality that transcends its particular locale. One of the best-known images of twentieth-century art, the painting depicts an all-night diner in which three customers, all lost in their own thoughts, have congregated. Hopper’s understanding of the expressive possibilities of light playing on simplified shapes gives the painting its beauty. Fluorescent lights had just come into use in the early 1940s, and the all-night diner emits an eerie glow, like a beacon on the dark street corner. Hopper eliminated any reference to an entrance, and the viewer, drawn to the light, is shut out from the scene by a seamless wedge of glass. The four anonymous and uncommunicative night owls seem as separate and remote from the viewer as they are from one another. (The red-haired woman was actually modeled by the artist’s wife, Jo.) Hopper denied that he purposefully infused this or any other of his paintings with symbols of human isolation and urban emptiness, but he acknowledged that in *Nighthawks* “unconsciously, probably, I was painting the loneliness of a large city.”
+
+
+In the early nineteenth century, the pigment known as Berlin or Prussian blue (*bero*) became more widely available and affordable, inspiring a new flourishing of landscape imagery in print design that could make the most of the strong color. Produced between the late 1820s and early 1830s, Hokusai’s series of prints studying the ancient pilgrimage site of Mount Fuji is among the most celebrated and majestic art of the nineteenth century. Whether the volcano is visually dominant, as in many of the prints, or reduced in scale, as it is here, the series is a virtuoso display of Hokusai’s compositional skill. With its bold linear design, striking juxtapositions, and careful use of color, *The Great Wave* is a compelling image of the mountain. Not only do the surging breakers seem to swamp the boaters, but—to the Japanese eye, accustomed to reading from right to left—the great claw of a wave appears almost to tumble into the viewer’s face. Even Mount Fuji appears fragile, about to be engulfed by the uncontrollable energy of the water. This iconic image has been used widely in contemporary designs, ranging from comics and advertisements to book jackets and record covers.
