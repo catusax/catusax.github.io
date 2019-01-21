@@ -1,5 +1,5 @@
 function wrapImageWithFancyBox() {
-    $("img").not(".sidebar-image img").not("#author-avatar img").not(".mdl-menu img").not(".something-else-logo img").each(function() {
+    $("img").not(".sidebar-image img").not("#author-avatar img").not(".mdl-menu img").not(".logo-link img").not(".something-else-logo img").each(function() {
         var t = $(this),
         a = t.attr("alt"),
         o = t.parent("a");
