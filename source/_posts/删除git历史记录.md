@@ -17,29 +17,33 @@ git用时间长了文件就会特别大，尤其是二进制文件，如果我�
 > 删除前一定要先push一下
 
 ```
-git cat-file commit master^X | sed -e '/^parent/ d' > tmpfile
-git rebase --onto $(git hash-object -t commit -w tmpfile) master
-rm -f tmpfile
+1.Checkout
+
+   git checkout --orphan latest_branch
+
+2. Add all the files
+
+   git add -A
+
+3. Commit the changes
+
+   git commit -am "commit message"
+
+
+4. Delete the branch
+
+   git branch -D master
+
+5.Rename the current branch to master
+
+   git branch -m master
+
+6.Finally, force update your repository
+
+   git push -f origin master
 ```
 
-其中X是要保留的记录条数
 
-### 删除本地log
-
-这个时候,你的log里已经没有历史的提交了,但是历史的数据还存在于本地,
-要想完全删除的话,执行以下代码
-```
-rm -rf .git/logs
-git gc
-```
-### 同步到远程仓库
-
-注意,这里只对master进行了操作,如果你还有其它branch或tag,都需要类似于这样地处理一遍.
-要同步到远程仓库，直接
-```
-git push --force
-```
-强制同步即可
 
 ---
 
