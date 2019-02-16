@@ -79,6 +79,12 @@ Overture是一个用Go编写的DNS服务器/转发器/调度程序。Overture意
 server=127.0.0.1#5353
 ```
 
+由于这里用了vps做上游DNS，一般延迟比较大，可以让`dnsmasq`进行缓存。编辑`dnsmasq.conf`,加入
+
+```conf
+cache-size=1024
+```
+
 这样`dnsmasq`就会去向`overture`查询DNS解析。
 
 ### STEP 3
@@ -132,3 +138,4 @@ edns-client-sub.net.    0s      IN      TXT     "{'ecs_payload':{'family':'1','o
 
 <p class="tip">注意，我本来用了vultr的vps来做中继向googleDNS查询，结果google返回的CLIENT-SUBNET一直是VPS的ip，而不是我们从下游传上来的IP。但是换了个阿里云的机器就能正确传参。可能google对此有黑名单/白名单机制。事实上，除了googleDNS，大部分publicDNS都会选择忽略用户传上来的subnet参数例如openDNS。这里我测试了opendns，cloudflare和Freenom World，均不支持</p>
 为了检验VPS是否能用作DNS查询，可以使用这条命令：`dig @8.8.8.8 edns-client-sub.net TXT +subnet=203.241.26.38`查询，如果你传上去的ip被替换为你的真实ip，那就只能另选个DNS服务器了。
+当然还有别的办法强制让GoogleDNS接收你的参数，那就是使用`DNS-over-Https`。我们下篇文章再介绍。
