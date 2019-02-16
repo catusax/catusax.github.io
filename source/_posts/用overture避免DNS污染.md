@@ -16,7 +16,7 @@ Overture是一个用Go编写的DNS服务器/转发器/调度程序。Overture意
 ### STEP 1
 
 首先你要有一个国外服务器运行overture。然后在上面部署好overture（不要使用常用端口）。然后就可以配置路由器了。
-首先下载[overture](https://github.com/shawn1m/overture/releases)的路由器版本,也就是`mipsle`版本的文件.用sftp工具上传到路由器的某个重启不会被删的目录下，我这里用的padavan固件，就放到了`/opt/app`下面。
+首先下载[overture](https://github.com/shawn1m/overture/releases)的路由器版本,也就是`mipsle`版本的文件.用sftp工具上传到路由器的某个重启不会被删的目录下，我这里用的padavan固件，就放到了`/etc/storage`下面。
 然后配置overture的'config.json'文件:
 
 ```json
@@ -29,8 +29,8 @@ Overture是一个用Go编写的DNS服务器/转发器/调度程序。Overture意
       "Protocol": "tcp",
       "SOCKS5Address": "",
       "Timeout": 6,
-      "EDNSClientSubnet": {//ECS,用于CDN加速，服务端建议开启，路由器端不建议开启
-        "Policy": "auto",//服务设置成auto，让服务器自动填写你的ip
+      "EDNSClientSubnet": {//ECS,用于CDN加速
+        "Policy": "disable",//在服务设置成auto，让服务器自动填写你的ip，路由器端不建议开启
         "ExternalIP": "",
         "NoCookie": false
       }
@@ -79,35 +79,20 @@ Overture是一个用Go编写的DNS服务器/转发器/调度程序。Overture意
 server=127.0.0.1#5353
 ```
 
-由于这里用了vps做上游DNS，一般延迟比较大，可以让`dnsmasq`进行缓存。编辑`dnsmasq.conf`,加入
-
-```conf
-cache-size=1024
-```
-
 这样`dnsmasq`就会去向`overture`查询DNS解析。
 
 ### STEP 3
 
 如上配置完以后就能用了，但是还要让overture能够自启动。
-首先来写一个脚本来启动`overture`。
-`start.sh`:
 
-```bash
-#!/bin/sh
-
-cd /opt/app/overture #overture是用GO编写的，使用相对路径，所以要CD过去
-nohup ./overture-linux-mipsle > /dev/null &
-```
-
-把这个文件也放到overture的目录下。授予x权限。
-在路由器管理页面的`自定义设置->脚本->在路由器启动后执行`里面加入这个脚本：
+在路由器管理页面的`自定义设置->脚本->在路由器启动后执行`里面加入：
 
 ```bash
 ### 运行脚本1
 /etc/storage/script_script.sh
 /etc/storage/ez_buttons_script.sh 3 &
-/opt/app/overture/start.sh #在这里加入启动脚本，和其他项目一同启动
+cd /etc/storage/overture #overture是用GO编写的，使用相对路径，所以要CD过去
+nohup ./overture-linux-mipsle > /dev/null &
 logger -t "【运行路由器启动后】" "overture已启动"
 logger -t "【运行路由器启动后】" "脚本完成"
 ```
