@@ -16,7 +16,7 @@ Overture是一个用Go编写的DNS服务器/转发器/调度程序。Overture意
 ### STEP 1
 
 首先你要有一个国外服务器运行overture。然后在上面部署好overture（不要使用常用端口）。然后就可以配置路由器了。
-首先下载[overture](https://github.com/shawn1m/overture/releases)的路由器版本,也就是`mipsle`版本的文件.用sftp工具上传到路由器的某个重启不会被删的目录下，我这里用的padavan固件，就放到了`/etc/storage`下面。
+首先下载[overture](https://github.com/shawn1m/overture/releases)的路由器版本,也就是`mipsle`版本的文件.用sftp工具上传到路由器的某个重启不会被删的目录下，我这里用的padavan固件，就放到了`/opt/app`下面。(padavan固件不可读写，需要解压crx修改后打包重新刷入)
 然后配置overture的'config.json'文件:
 
 ```json
@@ -91,7 +91,7 @@ server=127.0.0.1#5353
 ### 运行脚本1
 /etc/storage/script_script.sh
 /etc/storage/ez_buttons_script.sh 3 &
-cd /etc/storage/overture #overture是用GO编写的，使用相对路径，所以要CD过去
+cd /opt/app/overture #overture是用GO编写的，使用相对路径，所以要CD过去
 nohup ./overture-linux-mipsle > /dev/null &
 logger -t "【运行路由器启动后】" "overture已启动"
 logger -t "【运行路由器启动后】" "脚本完成"
