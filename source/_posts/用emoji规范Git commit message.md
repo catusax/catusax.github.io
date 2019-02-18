@@ -8,7 +8,7 @@ updated: 2019-02-18 17:22:31
 categories:
 tags:
 ---
-![](http://coolrc-blog.oss-cn-shenzhen.aliyuncs.com/19-02-18/snipaste_20190218_181705.png_webp)
+![](https://coolrc-blog.oss-cn-shenzhen.aliyuncs.com/19-02-18/snipaste_20190218_181705.png)
 `git commit`的时候不知道写什么？没关系，这里有一款工具解决你的烦恼。`commitizen`是一个自动生成`commit messsage`的工具，只需要运行`git cz`就能够自动根据你的选择帮你生成整洁美观的`commit messsage`。通常都是配合`conventional-changelog`使用[angular的commit格式](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines)。
 这个技巧想必已经烂大街了。所以这里介绍一个更酷的方式：配合上一些第三方的配置文件，使用emoji来作为`commit messsage`。<!--more-->
 
