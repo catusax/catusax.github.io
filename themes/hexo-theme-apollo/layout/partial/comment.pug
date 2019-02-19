@@ -31,7 +31,7 @@ if theme.gitment
 
 if theme.gitalk
     #gitalk-container
-    link(rel="stylesheet", href="https://unpkg.com/gitalk/dist/gitalk.css")
+    link(rel="stylesheet", href=url_for("css/gitalk.css"))
     script(src="https://unpkg.com/gitalk/dist/gitalk.min.js")
     script.
         const gitalk = new Gitalk({
