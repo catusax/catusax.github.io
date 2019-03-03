@@ -134,6 +134,7 @@
     cursor: pointer;
     border: 1px solid #42b983;
     border-radius: 5px;
+    border-bottom: 4px solid #3aa373;
     background-color: #42b983;
     color: #fff;
     outline: none;
@@ -157,15 +158,7 @@
   .gt-btn-login {
     margin-right: 0;
   }
-  .gt-btn-preview {
-    background-color: #fff;
-    color: #42b983;
-    &:hover {
-      background-color: #f2f2f2;
-      border-color: #66c99c;
-    }
-  }
-  .gt-btn-public:hover {
+  .gt-btn-public:hover .gt-btn-preview:hover {
     background-color: #66c99c;
     border-color: #66c99c;
   }
