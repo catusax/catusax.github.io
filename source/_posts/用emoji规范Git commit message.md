@@ -18,7 +18,7 @@ tags:
 
 <p class="tip">其实用`cz-emoji`可以直接生成emoji格式的`commit message`的，但是这玩意生成的`commit message`用emoji取代了`<type>`，没法用`conventional-changelog-cli`生成`changelog`，所以我们要用`cz-customizable`进行自定义。</p>
 
-```
+```bash
 npm install -g commitizen conventional-changelog conventional-changelog-cli cz-customizable
 echo '{ "path": "cz-customizable" }' > ~/.czrc
 wget https://raw.githubusercontent.com/nielsgl/conventional-changelog-emoji/master/.cz-config.js -O ~/.cz-config.js
@@ -28,7 +28,7 @@ wget https://raw.githubusercontent.com/nielsgl/conventional-changelog-emoji/mast
 
 使用`git cz`就能按照选项填写 commit message。要生成`changelog`的话，参照如下方法：
 
-```
+```bash
 # 不会覆盖以前的 Change log，只会在 CHANGELOG.md 的头部加上自从上次发布以来的变动
 $ conventional-changelog -i CHANGELOG.md -s -p 
 
