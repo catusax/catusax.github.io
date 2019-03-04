@@ -19,5 +19,5 @@ Disallow:
 User-agent: *
 Disallow: 
 Disallow: /bin/
-Sitemap: https://coolrc.top/sitemap.xml
+Sitemap: https://coolrc.me/sitemap.xml
 
