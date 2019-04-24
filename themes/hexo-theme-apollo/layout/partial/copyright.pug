@@ -8,5 +8,5 @@
     - var year = currentDate.getFullYear();
     - year = year == theme.startyear ? year : theme.startyear + ' - ' + year;
     p © #{year} #[a(href=config.url)!= config.author], powered by #[a(href=hexoURL, target="_blank") Hexo] and #[a(href=apolloURL, target="_blank") hexo-theme-apollo].
-    if theme.gitment
-        p #[a(href=theme.icp.link, target="_blank") theme.icp.code].
+    if theme.icp
+        p #[a(href=theme.icp.link, target="_blank") #{theme.icp.code}].
