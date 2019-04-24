@@ -28,7 +28,6 @@
   "dependencies": {
     "gulp": "^3.9.1",
     "gulp-sass": "^4.0.2",
-    "gulp-sass-china": "^3.1.0",
     "node-sass": "^4.9.4"
   }
 }
