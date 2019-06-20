@@ -44,3 +44,27 @@ if theme.gitalk
         distractionFreeMode: false  // Facebook-like distraction free mode
         })
         gitalk.render('gitalk-container')
+
+if theme.vssue
+    #vssue
+    link(rel="stylesheet", href=url_for("https://unpkg.com/vssue/dist/vssue.min.css"))
+    script(src="https://unpkg.com/vue/dist/vue.min.js")
+    script(src="https://unpkg.com/vssue/dist/vssue.github.min.js")
+    script.
+        new Vue({
+            el: '#vssue',
+
+            data: {
+                title: '#{page.title}',
+
+                options: {
+                owner: '#{theme.vssue.id}',
+                repo: '#{theme.vssue.repo}',
+                clientId: '#{theme.vssue.clientid}',
+                clientSecret: '#{theme.vssue.clientsecret}', // only required for some of the platforms
+                },
+            },
+
+            template: `<vssue :title="title" :options="options"></vssue>`,
+        })
+    
