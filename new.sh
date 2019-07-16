@@ -16,6 +16,7 @@ copyrightlink: 'https://creativecommons.org/licenses/by-nc-sa/4.0/'
 postlink: `date +%Y%m%d%H%M`
 date: $date
 updated: $date
+help: 使用 <!--more--> 划分预览，<p class="tip"></p>添加tip
 categories:
 tags:
 ---
