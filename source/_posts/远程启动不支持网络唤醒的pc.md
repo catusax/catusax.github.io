@@ -150,7 +150,7 @@ void loop()
 }
 ```
 
-~~<p class="tip">Blinker还可以支持小爱同学远程控制，不过我懒得写了，以后再补上</p>~~
+<p class="tip"><del>Blinker还可以支持小爱同学远程控制，不过我懒得写了，以后再补上</del></p>
 已经添加小爱同学代码，不过由于开关机需要一定时间，小爱同学不能及时感知到操作是否成功。
 
 程序的刷写方法可以参考这里：https://www.diyhobi.com/flash-program-esp-01-using-usb-serial-adapter/
