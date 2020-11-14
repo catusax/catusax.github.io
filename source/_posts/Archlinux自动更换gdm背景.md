@@ -1,3 +1,4 @@
+---
 title: Archlinux自动更换gdm背景
 postlink: 12162852
 date: 2015-12-12 16:28:52

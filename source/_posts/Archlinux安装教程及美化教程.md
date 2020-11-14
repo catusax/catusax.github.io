@@ -1,3 +1,4 @@
+---
 title: Achlinux安装教程及美化教程
 postlink: 04231804
 date: 2015-12-04 23:18:04

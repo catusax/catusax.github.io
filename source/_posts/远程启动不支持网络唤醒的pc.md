@@ -4,7 +4,7 @@ copyright: '许可协议: "署名-非商用-相同方式共享 4.0" 转载请保
 copyrightlink: 'https://creativecommons.org/licenses/by-nc-sa/4.0/'
 postlink: 2020091620
 date: 2020-09-16 20:59:58
-updated: 2020-09-16 20:59:58
+updated: 2020-11-14 15:59:58
 help: 使用 <!--more--> 划分预览，<p class="tip"></p>添加tip
 categories:
 tags:
@@ -12,6 +12,9 @@ tags:
 - 硬件
 ---
 
+---
+update: 修改了代码，现在可以实时检测电脑是否在线
+---
 
 > `Wake-on-LAN`简称`WOL`或`WoL`，中文多译为“网络唤醒”、“远程唤醒”技术。WOL是一种技术，同时也是该技术的规范标准，它的功效在于让休眠状态或关机状态的电脑，透过局域网的另一台电脑对其发令，使其唤醒、恢复成运作状态，或从关机状态转成引导状态。
 
@@ -45,12 +48,18 @@ tags:
 接着就要写程序远程控制继电器开合。推荐使用点灯科技的`blinker`SDK,配合手机app可以很方便的控制。blinker使用方法请自行搜索，
 
 新建一个blinker设备，获得Secret Key，然后开始编程：
+需要用到的库：[esp8266-ping](https://www.technologytourist.com/electronics/2018/05/22/ESP8266-ping-arduino-library.html),请自行在SDK里安装。
 
 ``` c
 #define BLINKER_WIFI
-#define GPIO 0 //继电器引脚，淘宝的esp relay4.0引脚为0
-#include <Blinker.h> //blinker SDK可以在arduino IDE里搜索下载
+#define GPIO 0 //继电器引脚
+#define BLINKER_MIOT_OUTLET
+#include <Blinker.h>
+#include <Pinger.h>
 
+Pinger pinger;
+
+char IP[] = "192.168.0.104"; //电脑ip，检测是否开机
 char auth[] = "你的key";//app中获取到的Secret Key(密钥)
 char ssid[] = "qwweqrq"; //你的wifi 名称
 char pswd[] = "password"; //你的wifi 密码
@@ -60,46 +69,94 @@ BlinkerButton Button1("btn-abc");//注意：内容替换为app中添加按键的
 
 // 按下BlinkerAPP按键即会执行该函数
 // 按下按键即会执行该函数
+
+void heartbeat()
+{
+  isonline();
+}
+
+void isonline()
+{
+  if (pinger.Ping(IP) == true)
+  {
+    Button1.print("on");
+    BlinkerMIOT.powerState("on");
+    BlinkerMIOT.print();
+  } else
+  {
+    Button1.print("off");
+    BlinkerMIOT.powerState("off");
+    BlinkerMIOT.print();
+  }
+}
+
+void pwbtn()
+{
+  //长按1.5s开机
+  digitalWrite(GPIO, LOW);
+  delay(1500);
+  digitalWrite(GPIO, HIGH);
+}
+
+void waiteforpw(bool pw)
+{
+  for (int i = 0; pw != pinger.Ping(IP) && i <= 20; i++) //不满足条件就持续ping，直到20次
+  {
+    delay(3000);
+  }
+  if (pw == false) {
+    Button1.print("off");
+    BlinkerMIOT.powerState("off");
+  }
+  else
+  {
+    Button1.print("on");
+    BlinkerMIOT.powerState("on");
+  }
+  BlinkerMIOT.print();
+}
+
 void button1_callback(const String & state)
 {
-//指示灯
-digitalWrite(GPIO, LOW);
-delay(1500);
-digitalWrite(GPIO, HIGH);
+  if (state == BLINKER_CMD_ON)
+  {
+    pwbtn();
+    waiteforpw(true);
+  }
+  else
+  {
+    pwbtn();
+    waiteforpw(false);
+  }
 }
 void setup()
 {
-// 初始化串口，并开启调试信息，调试用可以删除
-Serial.begin(115200);
-BLINKER_DEBUG.stream(Serial);
+  // 初始化串口，并开启调试信息，调试用可以删除
+  Serial.begin(115200);
+  BLINKER_DEBUG.stream(Serial);
+  // 初始化IO
+  pinMode(GPIO, OUTPUT);
+  digitalWrite(GPIO, HIGH);
 
-// 初始GPIO，默认继电器断开
-pinMode(GPIO, OUTPUT);
-digitalWrite(GPIO, HIGH);
-
-//指示灯
-//digitalWrite(LED_BUILTIN, LOW);
-//delay(1500);
-//digitalWrite(LED_BUILTIN, HIGH);
-
-// 初始化blinker
-Blinker.begin(auth, ssid, pswd);
-Button1.attach(button1_callback);
+  // 初始化blinker
+  Blinker.begin(auth, ssid, pswd);
+  Button1.attach(button1_callback);
+  Blinker.attachHeartbeat(heartbeat);
 
 }
 void loop()
 {
-Blinker.run();
+  Blinker.run();
 }
-
 ```
 
-<p class="tip">Blinker还可以支持小爱同学远程控制，不过我懒得写了，以后再补上</p>
+~~<p class="tip">Blinker还可以支持小爱同学远程控制，不过我懒得写了，以后再补上</p>~~
+已经添加小爱同学代码，不过由于开关机需要一定时间，小爱同学不能及时感知到操作是否成功。
 
 程序的刷写方法可以参考这里：https://www.diyhobi.com/flash-program-esp-01-using-usb-serial-adapter/
 
 接法是这样的：
 ![](https://coolrc-blog.oss-cn-shenzhen.aliyuncs.com/superbed/2020/09/16/5f6214d9160a154a67895e9a.jpg)
 
-写好之后，在blinker app立面编辑界面，新增一个按钮，数据键名为`btn-abc`,类型为普通按键。然后就可以用了
+写好之后，在blinker app立面编辑界面，新增一个按钮，数据键名为`btn-abc`,~~类型为普通按键~~(现在可以选择开关按键，样式选择第二个滑块按钮可以看到机器开关状态)。然后就可以用了
 ![](https://coolrc-blog.oss-cn-shenzhen.aliyuncs.com/superbed/2020/09/16/5f621601160a154a6789ce67.jpg)
