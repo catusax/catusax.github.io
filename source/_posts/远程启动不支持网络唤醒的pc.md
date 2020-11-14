@@ -48,18 +48,18 @@ update: 修改了代码，现在可以实时检测电脑是否在线
 接着就要写程序远程控制继电器开合。推荐使用点灯科技的`blinker`SDK,配合手机app可以很方便的控制。blinker使用方法请自行搜索，
 
 新建一个blinker设备，获得Secret Key，然后开始编程：
-需要用到的库：[esp8266-ping](https://www.technologytourist.com/electronics/2018/05/22/ESP8266-ping-arduino-library.html),请自行在SDK里安装。
+需要用到的库：[ESP8266Ping](https://github.com/dancol90/ESP8266Ping),注意不是arduino仓库里的那个ESP8266-ping，这个要自己下载放到libraries文件夹里。
 
 ``` c
 #define BLINKER_WIFI
 #define GPIO 0 //继电器引脚
 #define BLINKER_MIOT_OUTLET
 #include <Blinker.h>
-#include <Pinger.h>
+#include <ESP8266Ping.h>
+#include <ESP8266WiFi.h>
 
-Pinger pinger;
-
-char IP[] = "192.168.0.104"; //电脑ip，检测是否开机
+bool pwstate = false;//电源状态
+IPAddress IP (192, 168, 0, 104); //电脑ip，检测是否开机
 char auth[] = "你的key";//app中获取到的Secret Key(密钥)
 char ssid[] = "qwweqrq"; //你的wifi 名称
 char pswd[] = "password"; //你的wifi 密码
@@ -70,64 +70,74 @@ BlinkerButton Button1("btn-abc");//注意：内容替换为app中添加按键的
 // 按下BlinkerAPP按键即会执行该函数
 // 按下按键即会执行该函数
 
-void heartbeat()
+void statusreport()
 {
-  isonline();
-}
-
-void isonline()
-{
-  if (pinger.Ping(IP) == true)
+  if (pwstate)
   {
     Button1.print("on");
     BlinkerMIOT.powerState("on");
-    BlinkerMIOT.print();
   } else
   {
     Button1.print("off");
     BlinkerMIOT.powerState("off");
-    BlinkerMIOT.print();
-  }
-}
-
-void pwbtn()
-{
-  //长按1.5s开机
-  digitalWrite(GPIO, LOW);
-  delay(1500);
-  digitalWrite(GPIO, HIGH);
-}
-
-void waiteforpw(bool pw)
-{
-  for (int i = 0; pw != pinger.Ping(IP) && i <= 20; i++) //不满足条件就持续ping，直到20次
-  {
-    delay(3000);
-  }
-  if (pw == false) {
-    Button1.print("off");
-    BlinkerMIOT.powerState("off");
-  }
-  else
-  {
-    Button1.print("on");
-    BlinkerMIOT.powerState("on");
   }
   BlinkerMIOT.print();
 }
 
+bool isonline()
+{
+//  for (int i=0;i<3;i++)
+//  {
+    if (Ping.ping(IP)) {
+      //BLINKER_LOG("ping成功！",IP);
+      return true;
+    }
+//    delay(3000);
+//  }
+  //BLINKER_LOG("ping失败！",IP);
+  return false;
+}
+
+void heartbeat()
+{
+  if (isonline()) pwstate = true;
+  else pwstate = false;
+  //BLINKER_LOG("电源状态",pwstate);
+  statusreport();
+}
+
+void waiteforpwstate(bool pw)
+{
+  for (int i = 0; pw != (pwstate = isonline()) && i <= 10; i++) //不满足条件就持续ping，直到30次
+  {
+    delay(3000);
+  }
+}
+
+void click(const String & state)
+{
+  if((state == BLINKER_CMD_ON &&pwstate)||(state == BLINKER_CMD_OFF && !pwstate)) return; //状态不变的话就不要按下按钮
+  //长按1.5s开机
+  digitalWrite(GPIO, LOW);
+  delay(1500);
+  digitalWrite(GPIO, HIGH);
+  if (state == BLINKER_CMD_ON) waiteforpwstate(true);
+  else waiteforpwstate(false);
+  statusreport();
+}
+
+void miotPowerState(const String & state)
+{
+  click(state);
+}
+
 void button1_callback(const String & state)
 {
-  if (state == BLINKER_CMD_ON)
-  {
-    pwbtn();
-    waiteforpw(true);
-  }
-  else
-  {
-    pwbtn();
-    waiteforpw(false);
-  }
+  click(state);
+}
+void miotQuery(int32_t queryCode)
+{
+  statusreport();
 }
 void setup()
 {
@@ -138,11 +148,17 @@ void setup()
   pinMode(GPIO, OUTPUT);
   digitalWrite(GPIO, HIGH);
 
+  //指示灯
+  //digitalWrite(LED_BUILTIN, LOW);
+  //delay(1500);
+  //digitalWrite(LED_BUILTIN, HIGH);
+
   // 初始化blinker
   Blinker.begin(auth, ssid, pswd);
   Button1.attach(button1_callback);
   Blinker.attachHeartbeat(heartbeat);
-
+  BlinkerMIOT.attachQuery(miotQuery);
+  BlinkerMIOT.attachPowerState(miotPowerState);
 }
 void loop()
 {
