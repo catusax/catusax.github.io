@@ -1,3 +1,4 @@
+---
 title: windows10自动激活失败0xC004F210 0xC004E002
 postlink: 29110813
 date: 2015-11-29 11:08:13

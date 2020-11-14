@@ -1,3 +1,4 @@
+---
 title: gitignore文件失效原因
 postlink: 28234118
 date: 2015-12-28 23:41:18
