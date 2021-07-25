@@ -1,9 +1,9 @@
-image: node:10
+image: node:16
 
 before_script:
   - export TZ='Asia/Shanghai'
   - git config --global user.name "coolrc136"
-  - git config --global user.email "renchao13619102485@gmail.com"
+  - git config --global user.email "root@coolrc.me"
   - npm install -g hexo-cli
   - npm install
 
