@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "deploy": "hexo deploy",
-    "run": "hexo server"
+    "run": "hexo server",
+    "new": "zx new.mjs"
   },
   "private": true,
   "hexo": {
-    "version": "3.9.0"
+    "version": "5.4.0"
   },
   "dependencies": {
     "hexo": "^5.4.0",
@@ -25,6 +26,7 @@
     "hexo-server": "^2.0.0"
   },
   "devDependencies": {
-    "hexo-cli": "^4.3.0"
+    "hexo-cli": "^4.3.0",
+    "zx": "^2.0.0"
   }
 }
