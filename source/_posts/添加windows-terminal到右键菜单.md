@@ -29,7 +29,7 @@ tags:
 
 有了上述的前置知识，我们就知道应该怎么配置右键菜单了。比如用默认shell打开：
 
-```
+```reg
 Windows Registry Editor Version 5.00
 
 [HKEY_CLASSES_ROOT\Directory\Background\shell\wt]
@@ -41,7 +41,7 @@ Windows Registry Editor Version 5.00
 
 用`wsl2`打开：
 
-```
+```reg
 Windows Registry Editor Version 5.00
 
 [HKEY_CLASSES_ROOT\Directory\Background\shell\wt]
@@ -53,7 +53,7 @@ Windows Registry Editor Version 5.00
 
 要让右键菜单默认隐藏，按shift才能出现的话，可以添加一行`"Extended"=""`：
 
-```
+```reg
 Windows Registry Editor Version 5.00
 
 [HKEY_CLASSES_ROOT\Directory\Background\shell\wt]

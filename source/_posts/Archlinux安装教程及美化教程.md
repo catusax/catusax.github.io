@@ -14,7 +14,8 @@ tags:
 - plasma5
 - 美化
 ---
-![](https://farm9.staticflickr.com/8493/28408174511_b96a4f5edc_b_d.jpg)
+
+![Archlinux](https://farm9.staticflickr.com/8493/28408174511_b96a4f5edc_b_d.jpg)
 
 此文章记录我安装arch的过程，安装环境为uefi+gpt，桌面使用gnome3，输入法使用了gnome默认的ibus
 
@@ -607,7 +608,7 @@ sudo pacman -S create_ap
 
 此处仅为gnome美化
 这里先展示一下美化后的样子
-![](https://farm9.staticflickr.com/8624/28454262596_69cba63038_b_d.jpg)
+![桌面](https://farm9.staticflickr.com/8624/28454262596_69cba63038_b_d.jpg)
 
 ### gnome-tweak-tool
 
@@ -664,7 +665,7 @@ shell拓展请进入[https://extensions.gnome.org/](https://extensions.gnome.org
 ### screenfetch
 
 `screenfetch`可以在终端里输出你的系统logo和状态。
-![](https://farm9.staticflickr.com/8332/28454264086_eb0f9d6779_o_d.jpg)
+![screenfetch](https://farm9.staticflickr.com/8332/28454264086_eb0f9d6779_o_d.jpg)
 可以用pacman安装：
 
 ```bash
@@ -683,10 +684,10 @@ screenfetch
 docky的话`sudo pacman -S docky`即可，docky不支持`wayland`。
 dash-to-dock是gnome拓展，请在[https://extensions.gnome.org/](https://extensions.gnome.org/)自行按照说明安装
 我这里装了`docky`，这是我的docky配置
-![](https://farm9.staticflickr.com/8652/28454261686_b7e5e1bc98_o_d.png)
+![docky](https://farm9.staticflickr.com/8652/28454261686_b7e5e1bc98_o_d.png)
 
 ***
 
 至此，arch的基本配置就算完成了，秀一下桌面
-![](https://farm9.staticflickr.com/8697/28454263056_8471aaf14e_o_d.jpg)
-![](https://farm9.staticflickr.com/8682/28454262536_a96823a150_h_d.jpg)
+![gnome 窗口管理](https://farm9.staticflickr.com/8697/28454263056_8471aaf14e_o_d.jpg)
+![gnome 应用列表](https://farm9.staticflickr.com/8682/28454262536_a96823a150_h_d.jpg)

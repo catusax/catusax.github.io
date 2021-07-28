@@ -11,7 +11,7 @@ tags:
 - docker
 ---
 
-![](https://coolrc-blog.oss-cn-shenzhen.aliyuncs.com/superbed/2020/03/21/5e76134f9d7d586a540ff542.jpg)
+![docker logo](https://coolrc-blog.oss-cn-shenzhen.aliyuncs.com/superbed/2020/03/21/5e76134f9d7d586a540ff542.jpg)
 github上的仓库里没有编译arm版本的docker-compose，需要自己编译，这里记录编译的办法。
 <!--more-->
 我使用的系统是`Debian buster`,首先安装docker

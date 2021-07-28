@@ -41,6 +41,6 @@ tags:
 
 windows用Auroradns，主dns填入：<https://域名/dns-query>就可以
 
-![](https://coolrc-blog.oss-cn-shenzhen.aliyuncs.com/superbed/2020/02/05/5e3a8b842fb38b8c3cc68386.jpg)
+![Auroradns](https://coolrc-blog.oss-cn-shenzhen.aliyuncs.com/superbed/2020/02/05/5e3a8b842fb38b8c3cc68386.jpg)
 
 <p class="tip">更新：实际使用了两天，windows端还是`simple dnscrypt-proxy`好用,但是配置麻烦，这里不写了，具体使用方法看项目README：<a herf="https://github.com/coolrc136/Pcap_DNSProxy_docker/blob/overture/README.md">https://github.com/coolrc136/Pcap_DNSProxy_docker/blob/overture/README.md</a>。</p>

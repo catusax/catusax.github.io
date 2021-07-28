@@ -10,7 +10,7 @@ tags:
 - DNS
 - 手机
 ---
-![](https://coolrc-blog.oss-cn-shenzhen.aliyuncs.com/superbed/2019/07/16/5d2d4c70451253d178527789.jpg)
+![dns leak test](https://coolrc-blog.oss-cn-shenzhen.aliyuncs.com/superbed/2019/07/16/5d2d4c70451253d178527789.jpg)
 传统的UDP DNS泄漏隐私，容易被篡改。尤其是隐私问题，你的运营商可以轻易知道你访问过哪些网站，想想都可怕。因此加密DNS显得尤为重要。<!--more-->
 当然，DNS只是你访问互联网的第一个步骤而已，加密DNS并不能保证万无一失。HTTP自不必说，对于HTTPS，当你和服务器握手时，SNI也会暴露你访问的域名。但是，这并不代表加密dns没有用，至少在我朝网络环境下，可以保证DNS不被篡改，减少攻击面。
 <p class="tip">在TLS1.3中已经可以加密SNI了，可以通过在firefox中开启ESNI实现，但是需要服务端和客户端都支持，预计还要几年才能普及。</p>

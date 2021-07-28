@@ -15,6 +15,7 @@ tags:
 ---
 
 update: 修改了代码，现在可以实时检测电脑是否在线
+
 ---
 
 > `Wake-on-LAN`简称`WOL`或`WoL`，中文多译为“网络唤醒”、“远程唤醒”技术。WOL是一种技术，同时也是该技术的规范标准，它的功效在于让休眠状态或关机状态的电脑，透过局域网的另一台电脑对其发令，使其唤醒、恢复成运作状态，或从关机状态转成引导状态。
@@ -176,7 +177,7 @@ void loop()
 程序的刷写方法可以参考这里：<https://www.diyhobi.com/flash-program-esp-01-using-usb-serial-adapter/>
 
 接法是这样的：
-![](https://coolrc-blog.oss-cn-shenzhen.aliyuncs.com/superbed/2020/09/16/5f6214d9160a154a67895e9a.jpg)
+![esp8266 ttl针脚接线](https://coolrc-blog.oss-cn-shenzhen.aliyuncs.com/superbed/2020/09/16/5f6214d9160a154a67895e9a.jpg)
 
 写好之后，在blinker app立面编辑界面，新增一个按钮，数据键名为`btn-abc`,~~类型为普通按键~~(现在可以选择开关按键，样式选择第二个滑块按钮可以看到机器开关状态)。然后就可以用了
-![](https://coolrc-blog.oss-cn-shenzhen.aliyuncs.com/superbed/2020/09/16/5f621601160a154a6789ce67.jpg)
+![blinker控制](https://coolrc-blog.oss-cn-shenzhen.aliyuncs.com/superbed/2020/09/16/5f621601160a154a6789ce67.jpg)

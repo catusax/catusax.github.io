@@ -8,7 +8,7 @@ copyrightlink: https://creativecommons.org/licenses/by-nc-sa/4.0/
 tags:
 ---
 
-![](https://c2.staticflickr.com/6/5668/31173628641_b3e045d3cc_o_d.png)
+![linus fuck u nvidia](https://c2.staticflickr.com/6/5668/31173628641_b3e045d3cc_o_d.png)
 
 双显卡的笔记本通常都是用的i卡，n卡都是通着电而不用的，除非你使用了 bumblebee ，否则这颗核弹会一直通电，大大减少待机时间。最好的办法是禁用N卡，不让他通电。然而很多bios是不支持禁用N卡的，或者你还想在windows上使用N卡，这时候怎么办呢？<!--more-->
 

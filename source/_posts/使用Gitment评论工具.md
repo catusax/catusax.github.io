@@ -11,7 +11,7 @@ tags:
 - 评论框
 ---
 
-![](https://www.flickr.com/photos/145320515@N04/42263203695/sizes/o/)
+![gitment](https://live.staticflickr.com/1783/42263203695_c5018645e4_o_d.png)
 
 ### 简介
 
@@ -73,6 +73,6 @@ gitment.render('comments')
 
 这样配置好后打开页面应该就能看到`Gitment`的评论框了。
 
-![](https://www.flickr.com/photos/145320515@N04/42263203695/sizes/o/)
+![gitment](https://c1.staticflickr.com/9/1783/42263203695_c5018645e4_o_d.png)
 
 然后任何人都可以点击`Initialize Comments`新建一个issue用于存放评论。
