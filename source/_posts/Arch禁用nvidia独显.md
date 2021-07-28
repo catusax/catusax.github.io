@@ -17,6 +17,7 @@ bbswitch 可以帮助你禁用N卡，首先安装 bbswitch
 ``` bash
 sudo pacman -S bbswitch dkms
 ```
+
 然后设施 bbswitch 开机自动加载：
 
 ``` bash
@@ -32,7 +33,7 @@ sudo echo "blacklist nouveau" >> /etc/modprobe.d/nouveau_blacklist.conf
 
 然后重建 initrd
 
-```
+```bash
 mkinitcpio -p linux
 ```
 

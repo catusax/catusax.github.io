@@ -18,7 +18,7 @@ tags:
 昨天geekdns的加密dns用不了了，于是今天就自己整了个dns服务器。
 具体的地址就不发了，免得查水表，下面说一下搭建的步骤吧。
 <!--more-->
-项目地址：https://github.com/coolrc136/Pcap_DNSProxy_docker/tree/overture
+项目地址：<https://github.com/coolrc136/Pcap_DNSProxy_docker/tree/overture>
 记得切换到overture分支
 
 服务器要用的软件已经用`docker-compose`打包好了，pull下来直接跑就行。
@@ -27,16 +27,19 @@ tags:
 用户通过tls或者https向服务器请求dns
 
 ### tls
+
 如果是tls的话，仅仅是对tcp格式的dns请求进行了ssl加密而已，直接用nginx的stream模块进行tcp反代。然后dns请求传到overture，overture进行分流查询
 
 ### https
+
 如果是https的话，dns请求是用json格式传输的，我们需要dns-over-https这个软件来进行协议转换。
 首先nginx反代http请求到dns-over-https，然后dns-over-https把请求转换为普通的udp查询传给overture，再由overture发出请求。
 
 ### 使用
+
 安卓手机在加密dns选项填上服务器域名或ip就行。
 
-windows用Auroradns，主dns填入：https://域名/dns-query就可以
+windows用Auroradns，主dns填入：<https://域名/dns-query>就可以
 
 ![](https://coolrc-blog.oss-cn-shenzhen.aliyuncs.com/superbed/2020/02/05/5e3a8b842fb38b8c3cc68386.jpg)
 

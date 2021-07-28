@@ -18,9 +18,11 @@ tags:
 在PC上，加密dns很简单，只需要下载一个[SimpleDnsCrypt](https://simplednscrypt.org),他就能自动帮你配好`dnscrypt-proxy`了。Linux的话，除了`dnscrypt-proxy`，还有`dns-overtls`和`dns-over-https`的各种软件可供选择。但是在安卓手机上，想要实现加密DNS就比较难了。
 
 ## dns-over-tls
+
 从安卓9开始，就自带了加密dns功能，只要你在设置里填上合适的服务器地址就行，但是呢，这个自带的加密dns在使用代理时不会生效，如果你使用了SS，那么你还是会用SS里的DNS服务器明文查询，而且只能填一个域名，容易出故障。
 
 ## dnscrypt-proxy
+
 为了让全局DNS都能加密，这里就要使用一个`magisk`模块了，那就是`dnscrypt-proxy`。这个是`dnscrypt-proxy`的ARM版本，用`magisk`刷入，然后修改位于`/sdcard/dnscrypt-proxy`目录下的文件就能启用了。
 <p class="tip">为了方便配置，你可以在PC端用`SimpleDnsCrypt`配置好，然后把配置文件`dnscrypt-proxy.toml`复制过去。PC端默认监听53端口，建议修改为5353端口</p>
 这是我的配置文件：
@@ -87,9 +89,9 @@ prefix = ""
 如果不想用vpn，那么可以安装[这个magisk模块](https://coolrc-blog.oss-cn-shenzhen.aliyuncs.com/files/CloudflareDNS4Magisk-v2.6.zip),这个模块会使用`iptables`把所有53端口的出口流量转到`127.0.0.1:5353`，也就是全局启用了`dnscrypt-proxy`。
 
 ## 测试
+
 配置完dns后，我们来测试一下有没有成功,访问<https://www.dnsleaktest.com/>或者<http://nstool.netease.com/>。如果看到的DNS和你在`dnscrypt-proxy`中配置的一样，恭喜你，你的DNS已经被加密了。
 
-
-
 ## 参考链接
+
 [浅析加密DNS](http://www.hetianlab.com/html/news/news-2018042001.html)

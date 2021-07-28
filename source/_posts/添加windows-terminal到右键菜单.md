@@ -16,6 +16,7 @@ tags:
 新版的`Windows terminal`很好用，不过不能像powershell那样右键直接在文件夹打开。我们可以通过修改注册表的方式手动添加右键菜单。<!--more-->
 
 ## 了解参数
+
 首先，右键菜单的地址在：`计算机\HKEY_CLASSES_ROOT\Directory\Background\shell\`这个文件夹下面，我们在这里添加键值就能在右键菜单看到了。
 
 再来看`Windows terminal`的参数：
@@ -25,6 +26,7 @@ tags:
 `-p`参数可以指定要使用哪个shell，shell的名字就是就是`Windows terminal`里面配置的`name`参数，所以通过`C:\Users\你的用户名\AppData\Local\Microsoft\WindowsApps\wt.exe -p "Windows PowerShell" -d .`这个命令就能在当前文件夹使用`Windows PowerShell`来打开`Windows terminal`。
 
 ## 配置注册表
+
 有了上述的前置知识，我们就知道应该怎么配置右键菜单了。比如用默认shell打开：
 
 ```

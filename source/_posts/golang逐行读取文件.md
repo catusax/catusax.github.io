@@ -13,7 +13,8 @@ golang 中读取文件有很多方法，本文介绍用`bufio`包如何逐行进
 
 ## 读取
 
-**逐行存入切片**
+### 逐行存入切片
+
 ```go
 func readLines(path string) ([]string, int, error) {
   file, err := os.Open(path)
@@ -39,7 +40,7 @@ ScanWords（分割单词）
 ScanRunes（在遍历 UTF-8 字符串而不是字节时将会非常有用）
 ScanBytes
 
-**逐单词存入切片**
+### 逐单词存入切片
 
 ```go
 file, err := os.Open("filetoread.txt")
@@ -65,6 +66,7 @@ for _, word := range words {
 ```
 
 ## 写入
+
 写入使用的是`bufio`中`writer`对象的一些方法。
 
 ```go
@@ -77,7 +79,7 @@ func (b *Writer) WriteRune(r rune) (size int, err error)
 func (b *Writer) WriteString(s string) (int, error)
 ```
 
-**逐行写入**
+### 逐行写入
 
 ```go
 func writeLines(path string, lines []string) error{
@@ -97,5 +99,6 @@ func writeLines(path string, lines []string) error{
 ```
 
 ## 参考资料
+
 [Golang读写文件操作](https://xxbandy.github.io/2017/12/17/Golang%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/)
 [使用 Go 读取文件 - 概览](https://studygolang.com/articles/12905)

@@ -13,16 +13,19 @@ tags:
 vps 使用密码登陆的话，可能会遭到暴力破解。使用 google 的验证器可以在手机上生成动态验证码，即便对方得到密码也无法登陆。这篇文章介绍如何在 centos7 上启用 google 二次验证。<!--more-->
 
 ### 安装依赖
+
 首先要开启epel源，然后安装下列软件
 
 ```sh
 yum install gcc make pam-devel libpng-devel libtool wget git qrencode
 ```
+
 对于 ubuntu，应该安装
 
 ``` sh
 apt install libpam0g-dev build-essential
 ```
+
 ### 编译源码
 
 ```sh
@@ -40,7 +43,7 @@ sudo cp .libs/pam_google_authenticator.so /lib64/security/
 
 编辑 `/etc/pam.d/sshd` ，在第一行添加
 
-```
+```conf
 auth required pam_google_authenticator.so
 ```
 
@@ -54,7 +57,7 @@ auth required pam_google_authenticator.so
 
 >注意：每个应急码只能使用一次
 
-二维码使用[ google 身份验证器](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=zh_CN)软件扫描即可。扫描成功后app界面就能显示你的验证码了。由于验证码是基于时间戳的，确保你的设备时间准确。验证器允许4分钟以内的时间误差。
+二维码使用[google 身份验证器](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=zh_CN)软件扫描即可。扫描成功后app界面就能显示你的验证码了。由于验证码是基于时间戳的，确保你的设备时间准确。验证器允许4分钟以内的时间误差。
 
 完成上述步骤先不要急着退出，新开一个 ssh 测试一下能否登陆，以防出现问题导致无法登陆，我这里就因为没配置好而无法登陆了，一怒之下 rebuild 。
 

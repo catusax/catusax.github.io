@@ -12,14 +12,14 @@ tags:
 
 ## 安装命令行工具
 
-```
+```bash
 sudo apt install ruby ruby-dev
 gem install travis
 ```
 
 ## 部署
 
-```
+```bash
 travis login --pro
 travis setup releases --pro
 ```

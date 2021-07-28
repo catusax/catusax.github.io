@@ -15,12 +15,14 @@ tags:
 github上的仓库里没有编译arm版本的docker-compose，需要自己编译，这里记录编译的办法。
 <!--more-->
 我使用的系统是`Debian buster`,首先安装docker
-```
+
+```bash
 curl -fsSL https://get.docker.com -o get-docker.sh
 ```
+
 接下来安装docker-compose，
 
-```
+```bash
 sudo apt install python python-pip python-dev python-setuptools libffi-dev
 pip install pip -U
 pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple

@@ -10,7 +10,7 @@ tags:
 - nginx
 ---
 
-![](https://c1.staticflickr.com/9/8640/30280932405_35376236c5_z_d.jpg)
+![http2](https://c1.staticflickr.com/9/8640/30280932405_35376236c5_z_d.jpg)
 
 国庆节回家没事干，研究了一下nginx配置，参考了 Jerry Qu的文章 [本博客 Nginx 配置之完整篇](https://imququ.com/post/my-nginx-conf.html),给我的 github pages 用nginx做了一个反代，顺便开启了 http/2 支持。<!--more-->下面开始配置过程。
 
@@ -19,7 +19,8 @@ tags:
 ### 安装并编译相关软件
 
 首先安装依赖和编译工具：
-```
+
+```bash
 sudo apt-get install build-essential libpcre3 libpcre3-dev zlib1g-dev unzip git
 ```
 
@@ -27,7 +28,7 @@ sudo apt-get install build-essential libpcre3 libpcre3-dev zlib1g-dev unzip git
 
 编译安装 [libbrotli](https://github.com/google/brotli),使用 Brotli 压缩格式可以实现更高的网页压缩比。
 
-```
+```bash
 sudo apt-get install autoconf libtool automake
 
 git clone https://github.com/bagder/libbrotli
@@ -45,14 +46,15 @@ cd  ../
 
 接下来获取 ngx_brotli 源码：
 
-```
+```bash
 git clone https://github.com/google/ngx_brotli.git
 ```
+
 #### 安装 openssl
 
 系统自带的openssl太旧，需要自行编译最新版。这里安装 openssl 1.1.0b
 
-```
+```bash
 wget -O openssl.tar.gz -c https://www.openssl.org/source/openssl-1.1.0b.tar.gz
 tar zxf openssl.tar.gz
 mv openssl-1.1.0b/ openssl
@@ -60,7 +62,7 @@ mv openssl-1.1.0b/ openssl
 
 #### 安装Nginx
 
-```
+```bash
 wget -c https://nginx.org/download/nginx-1.11.4.tar.gz
 tar zxf nginx-1.11.4.tar.gz
 
@@ -76,7 +78,7 @@ sudo make install
 
 由于nginx是自己编译的，无法使用 systemd 管理，这里用一个脚本进行管理
 
-``` bash
+```bash
 #! /bin/sh
 
 ### BEGIN INIT INFO
@@ -151,13 +153,13 @@ exit 0
 
 现在管理 Nginx 只需使用以下命令即可：
 
-```
+```bash
 sudo ./nginx start|stop|restart|reload
 ```
 
 如果要开机自动启动 Nginx，请执行以下命令：
 
-```
+```bash
 sudo update-rc.d -f nginx defaults
 ```
 
@@ -207,21 +209,21 @@ http {
 
 这里使用 [dehydrated](https://github.com/lukas2511/dehydrated) 来自动申请 [Let's Encrypt](https://letsencrypt.org/) 的证书。
 
-```
+```bash
 git clone https://github.com/lukas2511/dehydrated.git
 cd dehydrated
 ```
 
 然后在 dehydrated 新建一个 `domains.txt` ，里面填入你的域名，例如
 
-```
+```bash
 example.com www.example.com
 example.net www.example.net wiki.example.net
 ```
 
 然后新建一个 nginx 站点配置文件，内容如下
 
-``` nginx
+```conf
 server {                                                                    
          listen   80; ## 监听 IPv4 80 端口
          server_name example.com www.example.com;
@@ -239,7 +241,7 @@ server {
 
 然后就可以生成证书了
 
-```
+```bash
 ./dehydrated -c
 ```
 
@@ -257,7 +259,7 @@ server {
 
 内容类似这样
 
-``` nginx
+```conf
 server {
         listen   80; ## 监听 IPv4 80 端口
         server_name example.com www.example.com;

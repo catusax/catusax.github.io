@@ -24,13 +24,16 @@ tags:
 这是因为.gitignore文件只能作用于Untracked Files，也就是那些从来没有被Git记录过的文件（自添加以后，从未add及commit过的文件）。
 
 之所以规则不生效，是因为那些.log文件曾经被Git记录过，因此.gitignore对它们完全无效。
+
 ### 解决办法
 
 1.从Git的数据库中删除对于该文件的追踪；
 例如我要取消 `20150514.log`的追踪，执行
-```
+
+```bash
 rm —cached logs/20150514.log
 ```
+
 2.把对应的规则写入`.gitignore`，让忽略真正生效；
 
 3.提交+推送

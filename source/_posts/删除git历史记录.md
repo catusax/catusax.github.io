@@ -17,7 +17,7 @@ git用时间长了文件就会特别大，尤其是二进制文件，如果我�
 > 删除前一定要先push一下
 > 删除前一定要先push一下
 
-```
+```bash
 1.Checkout
 
    git checkout --orphan latest_branch
@@ -44,9 +44,8 @@ git用时间长了文件就会特别大，尤其是二进制文件，如果我�
    git push -f origin master
 ```
 
-
-
 ---
 
 ### 参考资料
+
 [https://blog.czbix.com/remove-git-history.html](https://blog.czbix.com/remove-git-history.html)

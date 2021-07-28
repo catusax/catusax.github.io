@@ -8,8 +8,10 @@ updated: 2016-12-15 19:23:43
 categories: linux
 tags:
 - linux
+
 ---
-![](https://c1.staticflickr.com/1/266/31513133952_5dc5885698_z_d.jpg)
+
+![bbr](https://c1.staticflickr.com/1/266/31513133952_5dc5885698_z_d.jpg)
 BBR 是 Google 发布的一个新的 TCP 拥塞控制算法，关于 BBR 算法，请看《[Linux Kernel 4.9 中的 BBR 算法与之前的 TCP 拥塞控制相比有什么优势？](https://www.zhihu.com/question/53559433)》
 <!--more-->
 在 Linux kernel 4.9 中加入了 BBR 算法，正好最近 kernel 4.9 正式版发布，看到有人说 BBR 于是尝试安装了一下。
@@ -42,6 +44,7 @@ echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
 echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
 sysctl -p
 ```
+
 然后即可 `reboot` 重启系统。
 
 再次开机后，执行 `sysctl net.ipv4.tcp_available_congestion_control`

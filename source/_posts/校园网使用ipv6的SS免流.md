@@ -13,7 +13,7 @@ tags:
 
 其实很简单，通常SS配置文件是这样的
 
-```
+```json
 {
     "server":"my_server_ip",
     "server_port":8388,
@@ -28,16 +28,17 @@ tags:
 
 我们要做的事就是修改server一行的ip，将server行改成这样就行了:
 
-```
+```json
 "server":"::",
 ```
 
 然后在SS的客户端将原来的ipv4地址改为ipv6地址即可，要查看服务器ipv6地址，你可以去主机商的控制台查看，有的控制台不显示ipv6地址的，可以通过`ip addr`或者`ifconfig`命令查看。
 
-#### 更新：
+#### 更新
 
 在 shadowsocks-libev 中这样只能让ss监听ipv6，要同时监听ipv4和ipv6，应该这样
-```
+
+```json
 "server":["[::0]", "0.0.0.0"],
 ```
 

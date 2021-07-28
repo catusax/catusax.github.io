@@ -19,6 +19,7 @@ tags:
 hexo如果用git文件托管的话，一般在`.deploy`文件夹下会有个`.git`文件夹。现在我们在根目录下也弄个`.git`文件夹就可以了，并且两者可以很和谐地相处。
 
 ### Step by Step
+
 在github下建立一个新的`repository` ，名叫`blog`（与hexo文件夹名一样即可）。
 在本地进入`blog`文件夹，用命令`git init`创建仓库。
 
@@ -40,6 +41,7 @@ git pull origin
 现在在任何一台电脑，只需要`git clone <address>`，就可以将hexo的源文件复制到本地了。之后，当写博客后，只需要`git add .`再`git commit -m`再`git push`即可提交到远程仓库。当远程仓库有更新时，使用git pull或者git fetch就可以同步代码到本地了。
 
 ---
+
 ### 参考资料
 
 我的GitHub托管地址：[https://github.com/coolrc136/my-blog](https://github.com/coolrc136/my-blog)  
