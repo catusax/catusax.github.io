@@ -6,8 +6,13 @@ postlink: 202107281713
 date: 2021-07-28 16:49:32
 updated: 2021-07-28 16:49:32
 help: 使用 <!--more--> 划分预览，<p class="tip"></p>添加tip
-categories:
+categories: c++
 tags:
+  - c++
+  - rust
+  - error
+  - exception
+
 ---
 
 与c++和其他语言里面使用异常方式处理错误不同。rust和golang都采用特别的错误处理方式：golang利用函数有多个返回值的特性，直接把错误作为一个返回值。而rust则采用Result来包装函数返回值。这两种办法的好处是，每次调用代码时候都要原地处理错误，保证你不会遗漏任何未处理的错误。
