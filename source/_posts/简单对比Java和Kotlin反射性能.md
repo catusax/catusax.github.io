@@ -8,6 +8,8 @@ updated: 2021-07-29 17:38:54
 help: 使用 <!--more--> 划分预览，<p class="tip"></p>添加tip
 categories:
 tags:
+  - Java
+  - kotlin
 ---
 
 [上篇文章](/2021/07/29/202107291536/)说了kotlin里面的反射。
