@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="theme-color" content="#4fc08d"><meta name="msapplication-TileColor" content="#4fc08d"><title> 几种排序算法的复杂度分析 · Just4fun</title><meta name="description" content="几种排序算法的复杂度分析 - coolrc"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://coolrc.me/atom.xml" title="Just4fun"><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-71864657-1",'auto');ga('send','pageview');</script><script src="//code.jquery.com/jquery-2.2.0.min.js"></script><link rel="stylesheet" href="/css/jquery.fancybox.min.css"><script src="/js/jquery.fancybox.min.js"></script><script src="/js/wrapimage.js"></script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Just4fun" type="application/atom+xml">
+</head><body><div class="wrap"><header><a class="logo-link" href="/"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a class="nav-list-link" href="/" target="_self">BLOG</a></li><li class="nav-list-item"><a class="nav-list-link" href="/archives/" target="_self">ARCHIVE</a></li><li class="nav-list-item"><a class="nav-list-link" href="/friends/" target="_self">LINKS</a></li><li class="nav-list-item"><a class="nav-list-link" href="https://github.com/coolrc136" target="_blank">GITHUB</a></li><li class="nav-list-item"><a class="nav-list-link" href="/atom.xml" target="_self">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">几种排序算法的复杂度分析</h1><div class="post-info">Jul 31, 2021</div><div class="post-content"><p>对常见的排序算法复杂度的分析。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>关于排序算法的原理与实现直接看这里：<a target="_blank" rel="noopener" href="https://github.com/hustcc/JS-Sorting-Algorithm">https://github.com/hustcc/JS-Sorting-Algorithm</a></p>
+</blockquote>
+<h2 id="几种简单的算法"><a href="#几种简单的算法" class="headerlink" title="几种简单的算法"></a>几种简单的算法</h2><h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>每次将当前数字向前移动，直到插入到前面合适的位置。</p>
+<ul>
+<li><p>最好情况是数组已经排序好，不需要插入，只需要比较n次，时间复杂度O(n)</p>
+</li>
+<li><p>最坏情况是逆序，每次都把当前数字插入到最前面，需要n+(n-1)+… 1 次交换操作,时间复杂度O(n^2)</p>
+</li>
+</ul>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>冒泡排序是两两比较相邻元素，这样每次都把最小元素放到最前面，最大元素放后面。</p>
+<ul>
+<li><p>当数组排序好时候，只进行比较而不交换，时间复杂度O(n^2)，如果进行优化，增加一个标志位，第一次循环没有交换就直接退出，则时间复杂度可以减小到O(n)</p>
+</li>
+<li><p>最坏情况也是逆序，执行n+(n-1)+…1 次交换操作，时间复杂度O(n^2)</p>
+</li>
+</ul>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>最简单的一种，每次都把最小的数字取出来，存到排序的起始位置。不论是什么情况，都需要进行n+(n-1)+…2次比较，时间复杂度O(n^2)</p>
+<h3 id="平均复杂度"><a href="#平均复杂度" class="headerlink" title="平均复杂度"></a>平均复杂度</h3><p>上面这些排序方法，都有一个共同点，就是每次从最小的序列开始排序，逐渐增加这个序列直到排序完成。这些算法每次都最多只能消除一个逆序。更进一步观察发现，这些算法实质都是每次交换相邻的两个元素来排序：</p>
+<ul>
+<li><p>插入排序每次交换相邻元素，直到当前数字小于插入数字</p>
+</li>
+<li><p>冒泡排序不用多说</p>
+</li>
+<li><p>选择排序对临时数字的比较也相当于交换相邻的元素，类似于冒泡排序</p>
+</li>
+</ul>
+<p>要计算平均复杂度，只需要知道数组平均有多少逆序就行。对于N个互异数字的数组L，两两组合一共有N(N-1)种组合，这些组合有逆序也有正序。我们创造L的反序Lr，那么Lr数组中的逆序=L数组的正序数量。于是这两个数组一共有N(N-1)*2个序列，其中一半是逆序，也就是N(N-1)/2。因此可证明平均每个数组的逆序数量是N(N-1)/4。</p>
+<p>上述算法每次只能最多消除一个逆序，因而平均时间复杂度为O(n^2)。</p>
+<h2 id="冲破二次屏障的算法"><a href="#冲破二次屏障的算法" class="headerlink" title="冲破二次屏障的算法"></a>冲破二次屏障的算法</h2><p>上面的推论高速我们，如果一个算法每次只能两两交换删除一个逆序，那么平均时间复杂度最快只能是O(n^2)。为了打破这一规律，需要对相距较远的元素进行比较。</p>
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><p>将数组分为许多序列，每次对序列首尾进行交换，然后逐步缩小序列长度。</p>
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>使用归并操作每次归并小数组。</p>
+<p>每次两两合并，一共合并logn次就能合并完，每次合并比较n次，所以任何情况都是O(nlogn)</p>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>使用分治法，将数组按照某个基准分为两个小数组排序。</p>
+<p>由于使用了分治法，每次操作区间/2,最短要分logn次才能分到最短（每次都从中间分开），平均每次都是操作N个数字，所以最好情况的复杂度是O(nlogn)</p>
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p>利用堆的性质，把数组建成一个堆，然后每次取出堆顶部元素到另一个数组，最后拷贝回来。<br>堆的高度是log(n),所以每次取出需要</p>
+<h3 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h3><p>这几个算法的时间复杂度都很难计算。但是已知他们的平均时间复杂度都是O(nlogn)。对于普通的比较排序方法，这是最快的平均时间复杂度。</p>
+<p>如果有一个长为N的序列L，那么总共有N!种排列。这些排列中只有一种是有序的。将所有排列组成一个决策树，由于比较只有两种可能(&gt;=  &lt;,&gt; &lt;=  &gt;都是两种)所以这是一个二叉树。所有的排列都在叶子节点上，一共有N！个叶子节点。那么我们的决策树平均深度至少就是log(N!)。我们的算法就需要至少log(N!)次判断才能得出结果。<br>计算log(N!)，最后结果是 N/2*logN - N/2。也就是O(NlogN)</p>
+</div><div class="post-info">last updated: Jul 31, 2021</div><a class="post-info" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">许可协议: "署名-非商用-相同方式共享 4.0" 转载请保留原文链接及作者。</a></article></div></section><footer><nav id="pagination"><a class="prev" href="/2021/08/01/202108011240/"><span>Spring Data多数据源冲突问题</span></a><a class="prev" href="/2021/07/29/202107291739/"><span>简单对比Java和Kotlin反射性能</span></a></nav><div class="copyright"><span id="jinrishici-sentence">正在加载今日诗词....</span><script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js"></script><p>© 2015 - 2021 <a href="https://coolrc.me">coolrc</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div></body></html>
