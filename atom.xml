@@ -6,7 +6,7 @@
   <link href="https://coolrc.me/atom.xml" rel="self"/>
   
   <link href="https://coolrc.me/"/>
-  <updated>2021-08-03T19:29:49.000Z</updated>
+  <updated>2021-09-05T18:23:58.000Z</updated>
   <id>https://coolrc.me/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>从docker迁移到podman，支持docker-compose</title>
+    <link href="https://coolrc.me/2021/09/05/202109051825/"/>
+    <id>https://coolrc.me/2021/09/05/202109051825/</id>
+    <published>2021-09-05T18:23:58.000Z</published>
+    <updated>2021-09-05T18:23:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>docker.io最近取消了免费的自动构建功能，而且docker.io的镜像拉取也有限制。但是docker的默认registry只能是docker.io。如果要拉取gcr.io的镜像，还得先拉下来镜像上的，再修改tag，非常麻烦，而用podman的话，直接配置一个registry镜像就可以</p><span id="more"></span><p>以前使用podman的时候，总是会遇到一个问题，就是docker-compose没法用，而podman-compose的功能实在是太少。好在现在podman 3.0发布以后，已经可以无缝衔接docker-compose了。</p><h2 id="卸载docker"><a href="#卸载docker" class="headerlink" title="卸载docker"></a>卸载docker</h2><p>直接卸载docker-ce就行</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt remove docker-ce</span><br></pre></td></tr></table></figure><p>docker的镜像存储和podman，containerd都是不兼容的，所以本地的镜像也可以删了。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -rf /var/lib/docker /etc/docker</span><br><span class="line">sudo rm /etc/apparmor.d/docker</span><br><span class="line">sudo rm -rf /var/run/docker.sock</span><br><span class="line">sudo groupdel docker</span><br></pre></td></tr></table></figure><h2 id="切换到podman"><a href="#切换到podman" class="headerlink" title="切换到podman"></a>切换到podman</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install podman</span><br></pre></td></tr></table></figure><p>要让docker-compose能够访问到podman，需要启动podman服务。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable podman.socket</span><br><span class="line">sudo systemctl start podman.socket</span><br><span class="line">sudo systemctl status podman.socket</span><br><span class="line">sudo curl -H &quot;Content-Type: application/json&quot; --unix-socket /var/run/podman/podman.sock http://localhost/_ping</span><br></pre></td></tr></table></figure><p>然后就能在docker-compose里指定socket地址来使用了</p><p>在shell配置里加入如下内容</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export DOCKER_HOST=unix:///var/run/podman/podman.sock</span><br><span class="line">alias docker=podman</span><br></pre></td></tr></table></figure><p>然后就能无缝使用docker-compose了。这里加alias的作用是，虽然docker-compose是直接连接docker的api的，但是有时候会直接执行docker命令,加上这个才能保证一定不会出错。</p><h2 id="使用非root模式"><a href="#使用非root模式" class="headerlink" title="使用非root模式"></a>使用非root模式</h2><p>上面的方法是以root权限启动podman的，这样导致podman最大的优点非root运行没有了，3.2.0版本后，我们还可以用非root模式来启动podman服务</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl --user enable podman.socket</span><br><span class="line">systemctl --user start podman.socket</span><br><span class="line">systemctl --user status podman.socket</span><br></pre></td></tr></table></figure><p>shell配置文件</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export DOCKER_HOST=///run/user/$UID/podman/podman.sock</span><br></pre></td></tr></table></figure><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://fedoramagazine.org/use-docker-compose-with-podman-to-orchestrate-containers-on-fedora/">Use Docker Compose with Podman to Orchestrate Containers on Fedora Linux</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;docker.io最近取消了免费的自动构建功能，而且docker.io的镜像拉取也有限制。但是docker的默认registry只能是docker.io。如果要拉取gcr.io的镜像，还得先拉下来镜像上的，再修改tag，非常麻烦，而用podman的话，直接配置一个registry镜像就可以&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>golang中令人迷惑的切片与函数参数传递</title>
@@ -409,25 +426,6 @@
     <category term="hexo" scheme="https://coolrc.me/tags/hexo/"/>
     
     <category term="blog" scheme="https://coolrc.me/tags/blog/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git忽略已经被提交的文件</title>
-    <link href="https://coolrc.me/2018/10/21/1810212213/"/>
-    <id>https://coolrc.me/2018/10/21/1810212213/</id>
-    <published>2018-10-21T22:13:14.000Z</published>
-    <updated>2018-10-21T22:13:14.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天折腾<code>gitlab-ci</code>时候不小心commit了一个没用的文件上去，强迫症的我当然是忍不了啊。但是文件已经commit上去了，再修改<code>。gitignore</code>已经来不及了，怎么办呢。<span id="more"></span></p><p>上网搜索了一下，segmentfault 上的一个回答是这样的</p><blockquote><p>正确的做法应该是：<code>git rm --cached logs/xx.log</code>，然后更新 <code>.gitignore</code> 忽略掉目标文件，最后 <code>git commit -m &quot;We really don&#39;t want Git to track this anymore!&quot;</code></p></blockquote><p>至于为什么这么做，请看原文：<a href="https://segmentfault.com/q/1010000000430426">https://segmentfault.com/q/1010000000430426</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;今天折腾&lt;code&gt;gitlab-ci&lt;/code&gt;时候不小心commit了一个没用的文件上去，强迫症的我当然是忍不了啊。但是文件已经commit上去了，再修改&lt;code&gt;。gitignore&lt;/code&gt;已经来不及了，怎么办呢。</summary>
-    
-    
-    
-    
-    <category term="git" scheme="https://coolrc.me/tags/git/"/>
     
   </entry>
   
