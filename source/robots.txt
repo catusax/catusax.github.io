@@ -16,6 +16,10 @@ User-agent: googlebot-mobile
 Disallow: 
 User-agent: yahoo-mmcrawler
 Disallow: 
+User-agent: GPTBot
+Disallow: /
+User-agent: ChatGPT-User
+Disallow: /
 User-agent: *
 Disallow: 
 Disallow: /bin/
