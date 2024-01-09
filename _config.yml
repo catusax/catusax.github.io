@@ -70,7 +70,7 @@ deploy:
   type: git
   repo:
     github:
-      url: git@github.com:coolrc136/coolrc136.github.io.git
+      url: git@github.com:catusax/catusax.github.io.git
       branch: pages
 
 sitemap:
