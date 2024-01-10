@@ -4,7 +4,8 @@
   "scripts": {
     "deploy": "hexo deploy",
     "run": "hexo server",
-    "new": "zx new.mjs"
+    "new": "zx new.mjs",
+    "build":"hexo generate"
   },
   "private": true,
   "hexo": {
